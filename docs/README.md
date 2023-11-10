@@ -66,7 +66,7 @@
 
 
 
-### Item ( domain )
+### Menu ( domain )
 
 `name`, `price`, `category`
 
