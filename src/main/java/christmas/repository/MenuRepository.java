@@ -9,13 +9,23 @@ import java.util.List;
 
 public class MenuRepository {
 
+    private static MenuRepository menuRepository;
+
     List<Menu> repository;
     MenuController menuController;
 
-    public MenuRepository() {
+
+    private MenuRepository() {
         this.repository = new ArrayList<>();
         this.menuController = new MenuController();
         init();
+    }
+
+    public static MenuRepository getInstance() {
+        if (menuRepository == null) {
+            menuRepository = new MenuRepository();
+        }
+        return menuRepository;
     }
 
     private void init() {
