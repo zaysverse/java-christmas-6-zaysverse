@@ -16,7 +16,8 @@ public class Planner {
     }
 
     public void run() {
-        init();
+        Order order = init();
+        outputView.printOrder(order);
 
     }
 
@@ -26,4 +27,5 @@ public class Planner {
         Order order = orderController.create(date, readOrder);
         return order;
     }
+
 }

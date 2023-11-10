@@ -1,6 +1,11 @@
 package christmas.view;
 
+import christmas.domain.Event;
+import christmas.domain.Menu;
+import christmas.domain.Order;
+
 import java.text.DecimalFormat;
+import java.util.Map;
 
 public class OutputView {
 
@@ -23,42 +28,74 @@ public class OutputView {
         System.out.println("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n");
     }
 
-    public void printMenu(String output, Long totalPrice) {
+    public void printOrder(Order order) {
+        printMenu(order.getOrderMenus());
+        printTotalPrice(order.getTotalPrice());
+        printGift(order.isGift());
+        printEvent(order.getEvents(), order.isGift());
+        printDiscountPrice(order.getDiscountPrice());
+        printOrderPrice(order.getTotalPrice() + order.getDiscountPrice());
+        printBadge(order.getBadge().getMessage());
+    }
+
+    public void printMenu(Map<Menu, Integer> orderMenus) {
         System.out.println("<주문 메뉴>");
-        System.out.println(output);
-        System.out.println("<할인 전 총주문 금액>");
-        printPrice(totalPrice);
+        for (Map.Entry<Menu, Integer> orderMenu : orderMenus.entrySet()) {
+            System.out.println(orderMenu.getKey().getName() + " " + orderMenu.getValue() + "개");
+        }
+        System.out.println();
     }
 
-    public void printGift(String output) {
+
+    public void printGift(Boolean isGift) {
         System.out.println("<증정 메뉴>");
-        System.out.println(output);
+        if (isGift) {
+            System.out.println("샴페인 1개");
+        } else {
+            System.out.println("없음");
+        }
+        System.out.println();
     }
 
-    public void printEvent(String output) {
+    public void printEvent(Map<Event, Long> events, boolean isGift) {
         System.out.println("<혜택 내역>");
-        System.out.println(output);
+        for (Map.Entry<Event, Long> event : events.entrySet()) {
+            System.out.println(event.getKey().getMessage() + ": " + priceOf(event.getValue()));
+        }
+        if (isGift) {
+            System.out.println("증정 이벤트: -25,000원");
+        }
+        System.out.println();
+
     }
 
-    public void printDiscount(Long price) {
+    public void printTotalPrice(Long price) {
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(priceOf(price));
+        System.out.println();
+    }
+
+    public void printDiscountPrice(Long price) {
         System.out.println("<총혜택 금액>");
-        printPrice(price);
+        System.out.println(priceOf(price));
+        System.out.println();
     }
 
     public void printOrderPrice(Long price) {
         System.out.println("<할인 후 예상 결제 금액>");
-        printPrice(price);
+        System.out.println(priceOf(price));
+        System.out.println();
     }
 
-    public void printBadge(String output) {
+    public void printBadge(String badge) {
         System.out.println("<12월 이벤트 배지>");
-        System.out.println(output);
+        System.out.println(badge);
     }
 
-    public void printPrice(Long price) {
-        System.out.println(formatter.format(price));
+    /**
+     * Long -> String : "###,###원"
+     */
+    public String priceOf(Long price) {
+        return formatter.format(price);
     }
-
-
-
 }

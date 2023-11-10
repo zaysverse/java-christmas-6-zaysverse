@@ -10,7 +10,7 @@ public class Order {
     private Long discountPrice;
     private EventBadge badge; // NONE, STAR, TREE, SANTA
     private Map<Event, Long> events = new EnumMap<Event, Long>(Event.class); // CHRISTMAS_D_DAY, WEEKDAY, WEEKEND, SPECIAL, GIFT
-
+    private boolean isGift = false;
 
     protected Order() {
         this.totalPrice = 0L;
@@ -36,6 +36,30 @@ public class Order {
 
     public void setBadge(EventBadge badge) {
         this.badge = badge;
+    }
+
+    public Map<Menu, Integer> getOrderMenus() {
+        return orderMenus;
+    }
+
+    public Long getTotalPrice() {
+        return totalPrice;
+    }
+
+    public Long getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public Map<Event, Long> getEvents() {
+        return events;
+    }
+
+    public EventBadge getBadge() {
+        return badge;
+    }
+
+    public boolean isGift() {
+        return isGift;
     }
 
     // -- 생성 메서드 -- //
