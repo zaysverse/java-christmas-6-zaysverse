@@ -96,7 +96,7 @@
 ```
 
 
-### OrderItem ( domain )
+### OrderMenu ( domain )
 
 `item`, `count`, `orderPrice`
 
