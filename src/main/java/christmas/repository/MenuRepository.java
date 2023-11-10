@@ -51,14 +51,8 @@ public class MenuRepository {
         repository.add(menu);
     }
 
-    public Menu findMenu(String menuName) {
-        for (Menu menu : repository) {
-            if (menu.getName() == menuName) {
-                return menu;
-            }
-        }
-
-        throw new NoSuchElementException("그런 메뉴는 없습니다.");
+    public List<Menu> findAll() {
+        return repository;
     }
 
 }

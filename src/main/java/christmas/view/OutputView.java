@@ -8,6 +8,10 @@ public class OutputView {
 
     DecimalFormat formatter = new DecimalFormat("###,###원");
 
+    private OutputView() {
+        System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+    }
+
     public static OutputView getInstance() {
         if (outputView == null) {
             outputView = new OutputView();
