@@ -6,4 +6,7 @@ public class OrderMenu {
     private int count;
     private Long orderPrice;
 
+    public Long getOrderPrice() {
+        return Long.valueOf(menu.getPrice() * count);
+    }
 }

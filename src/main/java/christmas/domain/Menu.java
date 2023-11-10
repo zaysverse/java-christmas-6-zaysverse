@@ -12,6 +12,10 @@ public class Menu {
         this.category = category;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public void createMenu(String name, int price, String category) {
         Menu menu = new Menu(name, price, Category.valueOf(category));
     }

@@ -110,15 +110,17 @@
   - 주문한 메뉴의 가격 x 주문한 수량
 
 
-### Order ( service )
+### Order ( domain )
 
-`orderItems`, `totalPrice`, `salePrice`
+`orderMenus`, `totalPrice`, `discountPrice`
 
-- orderItems (List<OrderItem>로 구현 예정)
+- orderMenus (List<OrderMenu>로 구현 예정)
   - 주문한 메뉴들을 담은 구조체
 - totalPrice (int type)
   - 할인 전 총주문 금액
-- day(int type)
+- discountPrice
+  - 할인할 가격
+- date (`int` type)
   - 12월 중 식당 예상 방문 날짜
   - 1 ~ 31 사이의 숫자여야 한다. 
 
