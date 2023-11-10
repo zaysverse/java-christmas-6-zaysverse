@@ -114,8 +114,8 @@
 
 `orderMenus`, `totalPrice`, `discountPrice`
 
-- orderMenus (List<OrderMenu>로 구현 예정)
-  - 주문한 메뉴들을 담은 구조체
+- orderMenus (Map<Menu, Integer> type)
+  - 주문한 메뉴들과 수량을 담은 구조체
 - totalPrice (int type)
   - 할인 전 총주문 금액
 - discountPrice

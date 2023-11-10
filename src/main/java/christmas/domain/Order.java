@@ -1,14 +1,11 @@
 package christmas.domain;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Order {
 
     private int orderDate;
-    private List<OrderMenu> orderMenus = new ArrayList<>();
+    private Map<Menu, Integer> orderMenus = new HashMap<>();
     private Long totalPrice;
     private Long discountPrice;
     private EventBadge badge; // NONE, STAR, TREE, SANTA
@@ -20,13 +17,14 @@ public class Order {
         this.discountPrice = 0L;
     }
 
-    public void addOrderMenu(OrderMenu orderMenu) {
-        orderMenus.add(orderMenu);
-        totalPrice += orderMenu.getOrderPrice();
+    public void addOrderMenu(Menu menu, int count) {
+        orderMenus.put(menu, count);
+        totalPrice += menu.getPrice() * count;
     }
 
-    public void addEvent(Event event, Long discountPrice) {
-        events.put(event, discountPrice);
+    public void addEvent(Event event, Long price) {
+        events.put(event, price);
+        discountPrice += price;
     }
 
     public void setOrderDate(int date) {
@@ -41,11 +39,8 @@ public class Order {
     }
 
     // -- 생성 메서드 -- //
-    public static Order createOrder(int orderDate, OrderMenu... orderMenus) {
+    public static Order createOrder(int orderDate) {
         Order order = new Order();
-        for (OrderMenu orderMenu : orderMenus) {
-            order.addOrderMenu(orderMenu);
-        }
         order.setOrderDate(orderDate);
         order.setBadge(EventBadge.NONE);
         return order;
