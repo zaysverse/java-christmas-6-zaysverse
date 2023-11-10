@@ -33,8 +33,6 @@ public class InputView {
         for (String splits : input.split(",")) {
             String[] split = splits.split("-");
             orders.put(split[0], Integer.valueOf(split[1]));
-
-
         }
         return orders;
     }

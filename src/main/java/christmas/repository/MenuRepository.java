@@ -15,7 +15,6 @@ public class MenuRepository {
 
     List<Menu> repository;
 
-
     private MenuRepository() {
         this.repository = new ArrayList<>();
         init();
