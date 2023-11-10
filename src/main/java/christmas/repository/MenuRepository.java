@@ -1,11 +1,11 @@
 package christmas.repository;
 
 import christmas.controller.MenuController;
-import christmas.domain.Category;
 import christmas.domain.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class MenuRepository {
 
@@ -49,6 +49,16 @@ public class MenuRepository {
 
     public void save(Menu menu) {
         repository.add(menu);
+    }
+
+    public Menu findMenu(String menuName) {
+        for (Menu menu : repository) {
+            if (menu.getName() == menuName) {
+                return menu;
+            }
+        }
+
+        throw new NoSuchElementException("그런 메뉴는 없습니다.");
     }
 
 }

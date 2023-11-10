@@ -12,6 +12,10 @@ public class Menu {
         this.category = category;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPrice() {
         return price;
     }
