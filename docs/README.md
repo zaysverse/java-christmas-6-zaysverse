@@ -112,7 +112,7 @@
 
 ### Order ( domain )
 
-`orderMenus`, `totalPrice`, `discountPrice`
+`orderDate`,`orderMenus`, `totalPrice`, `discountPrice`, `badge`, `events`
 
 - orderMenus (Map<Menu, Integer> type)
   - 주문한 메뉴들과 수량을 담은 구조체
@@ -120,10 +120,15 @@
   - 할인 전 총주문 금액
 - discountPrice
   - 할인할 가격
-- date (`int` type)
+- orderDate (`int` type)
   - 12월 중 식당 예상 방문 날짜
   - 1 ~ 31 사이의 숫자여야 한다. 
-
+- badge (`EventBadge` enum)
+  - 이벤트 뱃지 
+  - NONE: 없음, STAR: 별, TREE: 나무, SANTA: 산타
+- events (EnumMap<Event, Long>)
+  - 12월 이벤트들 중 적용된 이벤트 
+  - CHRISTMAS_D_DAY: 크리스마스 디데이 할인, WEEKDAY: 평일할인, WEEKEND: 주말할인, SPECIAL: 특별할인, GIFT:증정품
 
 
 
