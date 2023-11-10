@@ -77,8 +77,8 @@
 
 - 유지보수를 위해 다른 곳에서 호출을 제한하고, `createItem()` 으로만 객체를 생성할 수 있게끔 한다. 
 
-### ItemRepository ( repository )
-- Item 객체들을 저장하는 저장소
+### MenuRepository ( repository )
+- Menu 들을 저장하는 저장소
 
 **메뉴**
 ```
