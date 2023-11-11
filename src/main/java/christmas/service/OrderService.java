@@ -8,7 +8,19 @@ import static christmas.domain.Event.*;
 import static christmas.service.SaleConfig.*;
 
 public class OrderService {
+    private static OrderService orderService;
+
     private Order userOrder;
+
+    private OrderService() {
+    }
+
+    public static OrderService getInstance() {
+        if (orderService == null) {
+            orderService = new OrderService();
+        }
+        return orderService;
+    }
 
     public Order order(Order order) {
         this.userOrder = order;

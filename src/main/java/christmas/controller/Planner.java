@@ -17,12 +17,12 @@ public class Planner {
     }
 
     public void run() {
-        Order order = init();
+        Order order = planOrder();
         outputView.printOrder(order);
 
     }
 
-    public Order init() {
+    public Order planOrder() {
         int date = inputView.readDate();
         Map<String, Integer> readOrder = inputView.readOrder();
         Order order = orderController.create(date, readOrder);

@@ -15,7 +15,6 @@ class MenuControllerTest {
         MenuService menuService = MenuService.getInstance();
 
         assertThat(menuService.findMenu("레드와인").getPrice()).isEqualTo(60000);
-
     }
 
 }

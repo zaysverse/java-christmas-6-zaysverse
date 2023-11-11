@@ -31,6 +31,7 @@ public class OutputView {
     }
 
     public void printOrder(Order order) {
+        printPreviewMessage();
         printMenu(order.getOrderMenus());
         printTotalPrice(order.getTotalPrice());
         printGift(order.isGift());

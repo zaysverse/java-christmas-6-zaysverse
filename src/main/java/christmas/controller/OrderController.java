@@ -10,7 +10,7 @@ import java.util.Map;
 public class OrderController {
 
     private MenuService menuService = MenuService.getInstance();
-    private OrderService orderService = new OrderService();
+    private OrderService orderService = OrderService.getInstance();
 
     public Order create(int date, Map<String, Integer> readOrders) {
         Order order = Order.createOrder(date);
