@@ -6,7 +6,7 @@ public class Menu {
     private int price;
     private Category category;  // APPETIZER ,MAIN, DESSERT, BEVERAGE
 
-    public Menu(String name, int price, Category category) {
+    protected Menu(String name, int price, Category category) {
         this.name = name;
         this.price = price;
         this.category = category;
@@ -24,8 +24,8 @@ public class Menu {
         return category;
     }
 
-    public static Menu createMenu(String name, int price, String category) {
-        Menu menu = new Menu(name, price, Category.valueOf(category));
+    public static Menu createMenu(String name, int price, Category category) {
+        Menu menu = new Menu(name, price, category);
         return menu;
     }
 }

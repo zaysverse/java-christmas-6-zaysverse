@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class OrderController {
 
-    private MenuService menuService = new MenuService();
+    private MenuService menuService = MenuService.getInstance();
     private OrderService orderService = new OrderService();
 
     public Order create(int date, Map<String, Integer> readOrders) {

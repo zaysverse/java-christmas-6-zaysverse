@@ -10,6 +10,7 @@ public class Planner {
 
     private InputView inputView = InputView.getInstance();
     private OutputView outputView = OutputView.getInstance();
+    private MenuController menuController = MenuController.getInstance();
     private OrderController orderController = new OrderController();
 
     public Planner() {
