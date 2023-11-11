@@ -3,11 +3,10 @@ package christmas.view;
 import christmas.domain.Event;
 import christmas.domain.Menu;
 import christmas.domain.Order;
+import christmas.service.SaleConfig;
 
 import java.text.DecimalFormat;
 import java.util.Map;
-
-import static christmas.service.SaleConfig.GIVEAWAY;
 
 public class OutputView {
 
@@ -53,7 +52,7 @@ public class OutputView {
     public void printGift(Boolean isGift) {
         System.out.println("<증정 메뉴>");
         if (isGift) {
-            System.out.println(GIVEAWAY);
+            System.out.println(SaleConfig.GIVEAWAY);
         } else {
             System.out.println("없음");
         }

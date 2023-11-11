@@ -9,8 +9,20 @@ import java.util.Map;
 
 public class OrderController {
 
+    private static OrderController orderController;
+
     private MenuService menuService = MenuService.getInstance();
     private OrderService orderService = OrderService.getInstance();
+
+    private OrderController() {
+    }
+
+    public static OrderController getInstance() {
+        if (orderController == null) {
+            orderController = new OrderController();
+        }
+        return orderController;
+    }
 
     public Order create(int date, Map<String, Integer> readOrders) {
         Order order = Order.createOrder(date);
@@ -21,10 +33,8 @@ public class OrderController {
             order.addOrderMenu(menu, count);
         }
 
-         orderService.order(order);
+        orderService.order(order);
 
         return order;
     }
-
-
 }

@@ -19,6 +19,4 @@ public class SaleConfig {
 
     public static final String GIVEAWAY = "샴페인 1개";
 
-
-
 }

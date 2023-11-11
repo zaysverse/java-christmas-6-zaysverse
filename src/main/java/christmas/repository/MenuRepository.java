@@ -1,13 +1,9 @@
 package christmas.repository;
 
-import christmas.controller.MenuController;
 import christmas.domain.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-
-import static christmas.domain.Menu.createMenu;
 
 public class MenuRepository {
 
