@@ -34,12 +34,24 @@ public class Order {
         this.orderDate = date;
     }
 
+    public void setGift(boolean isGift) {
+        this.isGift = isGift;
+    }
+
+    public void addDiscount(Long price) {
+        discountPrice += price;
+    }
+
     public void setBadge(EventBadge badge) {
         this.badge = badge;
     }
 
     public Map<Menu, Integer> getOrderMenus() {
         return orderMenus;
+    }
+
+    public int getOrderDate() {
+        return orderDate;
     }
 
     public Long getTotalPrice() {
@@ -68,6 +80,16 @@ public class Order {
         order.setOrderDate(orderDate);
         order.setBadge(EventBadge.NONE);
         return order;
+    }
+
+    public int findMenuCountByCategory(Category category) {
+        int count = 0;
+        for (Map.Entry<Menu, Integer> orderMenu : orderMenus.entrySet()) {
+            if (orderMenu.getKey().getCategory() == category) {
+                count++;
+            }
+        }
+        return count;
     }
 
 }

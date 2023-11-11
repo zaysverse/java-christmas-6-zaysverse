@@ -20,6 +20,10 @@ public class Menu {
         return price;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
     public static Menu createMenu(String name, int price, String category) {
         Menu menu = new Menu(name, price, Category.valueOf(category));
         return menu;
