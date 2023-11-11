@@ -1,9 +1,5 @@
 package christmas.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import christmas.ErrorMessage;
-import christmas.repository.MenuRepository;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;

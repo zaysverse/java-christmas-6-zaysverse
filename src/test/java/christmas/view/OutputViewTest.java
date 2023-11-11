@@ -3,8 +3,7 @@ package christmas.view;
 import christmas.domain.Category;
 import christmas.domain.Event;
 import christmas.domain.Menu;
-import christmas.service.SaleConfig;
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -27,6 +26,11 @@ class OutputViewTest {
     void beforeEach() {
         output = new ByteArrayOutputStream();
         System.setOut(new PrintStream(output));
+    }
+
+    @AfterEach
+    void afterEach() {
+        System.setOut(System.out);
     }
 
     @Test
@@ -82,7 +86,6 @@ class OutputViewTest {
                 .contains(Event.SPECIAL.getMessage() + ": " + outputView.priceOf(-13000L))
                 .contains(Event.WEEKEND.getMessage() + ": " + outputView.priceOf(-2000L));
     }
-
 
     @Test
     void priceOf() {
