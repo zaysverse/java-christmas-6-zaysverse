@@ -46,10 +46,6 @@ public class Order {
         this.badge = badge;
     }
 
-    public Map<Menu, Integer> getOrderMenus() {
-        return orderMenus;
-    }
-
     public int getOrderDate() {
         return orderDate;
     }
@@ -58,12 +54,14 @@ public class Order {
         return totalPrice;
     }
 
-    public Long getDiscountPrice() {
-        return discountPrice;
+    public Long getDiscountPrice() { return discountPrice; }
+
+    public Map<Menu, Integer> getOrderMenus() {
+        return Collections.unmodifiableMap(orderMenus);
     }
 
     public Map<Event, Long> getEvents() {
-        return events;
+        return Collections.unmodifiableMap(events);
     }
 
     public EventBadge getBadge() {
