@@ -7,6 +7,8 @@ import christmas.domain.Order;
 import java.text.DecimalFormat;
 import java.util.Map;
 
+import static christmas.service.SaleConfig.GIVEAWAY;
+
 public class OutputView {
 
     private static OutputView outputView;
@@ -50,7 +52,7 @@ public class OutputView {
     public void printGift(Boolean isGift) {
         System.out.println("<증정 메뉴>");
         if (isGift) {
-            System.out.println("샴페인 1개");
+            System.out.println(GIVEAWAY);
         } else {
             System.out.println("없음");
         }

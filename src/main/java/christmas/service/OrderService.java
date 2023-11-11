@@ -13,7 +13,7 @@ public class OrderService {
     public Order order(Order order) {
         this.userOrder = order;
 
-        // 할인과 이벤트들 적용해서 반환
+        // 이벤트 적용
         sale(order.getOrderDate());
         giftEvent();
         giveEventBadge();
@@ -31,6 +31,10 @@ public class OrderService {
         } else if (!isWeekend(date)) {    // 평일할인
             userOrder.addEvent(WEEKDAY, WEEKDAYS_DESSERT * userOrder.findMenuCountByCategory(Category.DESSERT));
         }
+
+        if (isStar(date)) { // 특별 할인
+            userOrder.addEvent(SPECIAL, SPECIAL_STAR);
+        }
     }
 
     private boolean isWeekend(int date) {
@@ -40,8 +44,15 @@ public class OrderService {
         return false;
     }
 
+    private boolean isStar(int date) {
+        if (date % 7 == 3 || date == CHRISTMAS_DAY) {
+            return true;
+        }
+        return false;
+    }
+
     private void giftEvent() {
-        if (userOrder.getTotalPrice() < GIFT_CONDITION) {
+        if (userOrder.getTotalPrice() >= GIFT_CONDITION) {
             userOrder.setGift(true);
             userOrder.addDiscount(GIFT_CHAMPAGNE_PRICE);
         }
