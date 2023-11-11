@@ -1,13 +1,18 @@
 package christmas.domain;
 
+import javax.naming.CannotProceedException;
+import javax.naming.SizeLimitExceededException;
 import java.util.*;
+
+import static christmas.ErrorMessage.*;
 
 public class Order {
 
+    public static final int MAX_ORDER_MENU = 20;
+
     private int orderDate;
     private Map<Menu, Integer> orderMenus = new HashMap<>();
-    private Long totalPrice;
-    private Long discountPrice;
+    private Long totalPrice, discountPrice;
     private EventBadge badge; // NONE, STAR, TREE, SANTA
     private Map<Event, Long> events = new EnumMap<Event, Long>(Event.class); // CHRISTMAS_D_DAY, WEEKDAY, WEEKEND, SPECIAL, GIFT
     private boolean isGift = false;
@@ -28,10 +33,14 @@ public class Order {
     }
 
     public void setOrderDate(int date) {
-        if (date < 1 || date > 31) {
-            throw new IllegalArgumentException("날짜는 1~31 사이의 숫자");
-        }
+        validateDate(date);
         this.orderDate = date;
+    }
+
+    private void validateDate(int date) throws IllegalArgumentException {
+        if (date < 1 || date > 31) {
+            throw new IllegalArgumentException(INVALID_DATE.getMessage());
+        }
     }
 
     public void setGift(boolean isGift) {
@@ -54,7 +63,9 @@ public class Order {
         return totalPrice;
     }
 
-    public Long getDiscountPrice() { return discountPrice; }
+    public Long getDiscountPrice() {
+        return discountPrice;
+    }
 
     public Map<Menu, Integer> getOrderMenus() {
         return Collections.unmodifiableMap(orderMenus);
@@ -80,14 +91,50 @@ public class Order {
         return order;
     }
 
+
     public int findMenuCountByCategory(Category category) {
         int count = 0;
         for (Map.Entry<Menu, Integer> orderMenu : orderMenus.entrySet()) {
             if (orderMenu.getKey().getCategory() == category) {
-                count++;
+                count += orderMenu.getValue();
             }
         }
         return count;
     }
 
+    public boolean containsMenuByCategory(Category category) {
+        for (Menu menu : orderMenus.keySet()) {
+            if (menu.getCategory() == category) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void validate() throws RuntimeException{
+        int cnt = findAllCount();
+
+        if (cnt == findMenuCountByCategory(Category.BEVERAGE)) {
+            cancelOrder();
+            throw new NoSuchElementException(LIMITED_MENU.getMessage());
+        }
+
+        if (cnt > MAX_ORDER_MENU) {
+            cancelOrder();
+            throw new IllegalArgumentException(OVER_MENU.getMessage());
+        }
+    }
+
+    private int findAllCount() {
+        int cnt = 0;
+        for (int menuCnt : orderMenus.values()) {
+            cnt += menuCnt;
+        }
+        return cnt;
+    }
+
+    public void cancelOrder() {
+        orderMenus = new HashMap<>();
+        totalPrice = 0L;
+    }
 }

@@ -67,8 +67,12 @@ public class OutputView {
         if (isGift) {
             System.out.println("증정 이벤트: -25,000원");
         }
-        System.out.println();
 
+        if (events.isEmpty() && !isGift) {
+            System.out.println("없음");
+        }
+
+        System.out.println();
     }
 
     public void printTotalPrice(Long price) {

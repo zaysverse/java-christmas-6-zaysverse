@@ -3,7 +3,6 @@ package christmas.controller;
 import christmas.domain.Category;
 import christmas.domain.Menu;
 import christmas.service.MenuService;
-import christmas.view.InputView;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,6 +12,7 @@ import java.io.IOException;
 public class MenuController {
 
     public static final String FILE_NAME = "E:\\java-christmas-6-zaysverse\\src\\main\\java\\christmas\\controller\\menu.txt";
+    public static final String MENU_SEPARATOR = ",";
 
     private static MenuController menuController;
 
@@ -39,7 +39,7 @@ public class MenuController {
             BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME));
             String line = "";
             while ((line = reader.readLine()) != null) {
-                String[] split = line.split(",");
+                String[] split = line.split(MENU_SEPARATOR);
                 menuService.save(create(split[0], Integer.parseInt(split[1]), split[2]));
             }
             reader.close();

@@ -6,6 +6,8 @@ import christmas.repository.MenuRepository;
 
 import java.util.NoSuchElementException;
 
+import static christmas.ErrorMessage.INVALID_ORDER;
+
 public class MenuService {
 
     private static MenuService menuService;
@@ -32,7 +34,7 @@ public class MenuService {
             }
         }
 
-        throw new NoSuchElementException("그런 메뉴는 없습니다.");
+        throw new NoSuchElementException(INVALID_ORDER.getMessage());
     }
 
     public void save(Menu menu) {

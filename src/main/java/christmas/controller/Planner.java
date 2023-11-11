@@ -13,7 +13,8 @@ public class Planner {
     private MenuController menuController = MenuController.getInstance();
     private OrderController orderController = OrderController.getInstance();
 
-    public Planner() {}
+    public Planner() {
+    }
 
     public void run() {
         // 주문
@@ -22,10 +23,20 @@ public class Planner {
         outputView.printOrder(order);
     }
 
-    private Order planOrder() {
-        int date = inputView.readDate();
-        Map<String, Integer> readOrder = inputView.readOrder();
-        Order order = orderController.create(date, readOrder);
-        return order;
+    private Order planOrder(){
+        Order order;
+        try {
+            order = orderController.create(inputView.readDate());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            order = orderController.create(inputView.readDate());
+        }
+
+        try {
+            return orderController.update(order, inputView.readOrder());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return orderController.update(order, inputView.readOrder());
+        }
     }
 }
