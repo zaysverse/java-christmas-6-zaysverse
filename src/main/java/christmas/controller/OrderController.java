@@ -39,6 +39,6 @@ public class OrderController {
             order.addOrderMenu(menu, count);
         }
         order.validate();
-        return order;
+        return orderService.order(order);
     }
 }
