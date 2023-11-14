@@ -36,8 +36,17 @@ public class OutputView {
         printGift(order.isGift());
         printEvent(order.getEvents(), order.isGift());
         printDiscountPrice(order.getDiscountPrice());
-        printOrderPrice(order.getTotalPrice() + order.getDiscountPrice() - SaleConfig.GIFT_CHAMPAGNE_PRICE);
+
+        printOrderPrice(getOrderPrice(order));
+
         printBadge(order.getBadge().getMessage());
+    }
+
+    private long getOrderPrice(Order order) {
+        if (order.isGift()) {
+            return order.getTotalPrice() + order.getDiscountPrice() - SaleConfig.GIFT_CHAMPAGNE_PRICE;
+        }
+        return order.getTotalPrice() + order.getDiscountPrice();
     }
 
     public void printMenu(Map<Menu, Integer> orderMenus) {
