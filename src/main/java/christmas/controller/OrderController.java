@@ -32,7 +32,7 @@ public class OrderController {
         return orderService.order(order);
     }
 
-    public Order update(Order order, Map<String, Integer> readOrders) {
+    public Order update(Order order, Map<String, Integer> readOrders) throws RuntimeException {
         for (Map.Entry<String, Integer> readOrder : readOrders.entrySet()) {
             Menu menu = menuService.findMenu(readOrder.getKey());
             int count = readOrder.getValue();

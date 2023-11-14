@@ -48,7 +48,6 @@ public class InputView {
 
         if (!input.contains(",")) {
             readOrderOne(orders, input);
-            return orders;
         }
 
         for (String splits : input.split(ORDER_SEPARATOR)) {

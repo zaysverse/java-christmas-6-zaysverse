@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 class MenuControllerTest {
 
     @Test
-    public void init() throws Exception {
+    public void init_초기화시_파일을_읽어와서_저장소에_저장() throws Exception {
         MenuController menuController = MenuController.getInstance();
         MenuService menuService = MenuService.getInstance();
 
