@@ -4,11 +4,15 @@ import christmas.domain.Category;
 import christmas.domain.EventBadge;
 import christmas.domain.Order;
 
+import static christmas.ErrorMessage.INVALID_ORDER;
 import static christmas.domain.Category.*;
 import static christmas.domain.Event.*;
 import static christmas.service.SaleConfig.*;
 
 public class OrderService {
+    public static final int EVENT_CONDI = 10000;
+    public static final int MAX_MENU_CNT = 20;
+
     private static OrderService orderService;
 
     private Order userOrder;
@@ -25,6 +29,12 @@ public class OrderService {
 
     public Order order(Order order) {
         this.userOrder = order;
+
+        validation();
+
+        if (order.getTotalPrice() < EVENT_CONDI) {
+            return userOrder;
+        }
 
         // 이벤트 적용
         sale(order.getOrderDate());
@@ -49,6 +59,17 @@ public class OrderService {
         if (isStar(date)) { // 특별 할인
             userOrder.addEvent(SPECIAL, SPECIAL_STAR);
         }
+    }
+
+    private void validation() {
+        if (userOrder.findMenuCountByCategory(BEVERAGE) == userOrder.findAllCount()) {
+            throw new IllegalStateException(INVALID_ORDER.getMessage());
+        }
+
+        if (userOrder.findAllCount() > MAX_MENU_CNT) {
+            throw new IllegalStateException(INVALID_ORDER.getMessage());
+        }
+
     }
 
     private boolean isWeekend(int date) {

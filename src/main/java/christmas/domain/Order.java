@@ -111,7 +111,7 @@ public class Order {
         return false;
     }
 
-    public void validate() throws RuntimeException{
+    public void validate() throws RuntimeException {
         int cnt = findAllCount();
 
         if (cnt == findMenuCountByCategory(Category.BEVERAGE)) {
@@ -125,7 +125,7 @@ public class Order {
         }
     }
 
-    private int findAllCount() {
+    public int findAllCount() {
         int cnt = 0;
         for (int menuCnt : orderMenus.values()) {
             cnt += menuCnt;
