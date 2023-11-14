@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class MenuController {
 
-    public static final String FILE_NAME = "E:\\java-christmas-6-zaysverse\\src\\main\\java\\christmas\\controller\\menu.txt";
+    public static final String FILE_NAME = "src/main/java/christmas/controller/menu.txt";
     public static final String MENU_SEPARATOR = ",";
 
     private static MenuController menuController;
