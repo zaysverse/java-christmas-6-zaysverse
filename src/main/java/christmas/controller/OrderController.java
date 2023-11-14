@@ -38,7 +38,6 @@ public class OrderController {
             int count = readOrder.getValue();
             order.addOrderMenu(menu, count);
         }
-        order.validate();
         return orderService.order(order);
     }
 }

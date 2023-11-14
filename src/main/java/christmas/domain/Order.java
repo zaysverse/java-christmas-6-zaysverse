@@ -8,8 +8,6 @@ import static christmas.ErrorMessage.*;
 
 public class Order {
 
-    public static final int MAX_ORDER_MENU = 20;
-
     private int orderDate;
     private Map<Menu, Integer> orderMenus = new HashMap<>();
     private Long totalPrice, discountPrice;
@@ -109,20 +107,6 @@ public class Order {
             }
         }
         return false;
-    }
-
-    public void validate() throws RuntimeException {
-        int cnt = findAllCount();
-
-        if (cnt == findMenuCountByCategory(Category.BEVERAGE)) {
-            cancelOrder();
-            throw new NoSuchElementException(LIMITED_MENU.getMessage());
-        }
-
-        if (cnt > MAX_ORDER_MENU) {
-            cancelOrder();
-            throw new IllegalArgumentException(OVER_MENU.getMessage());
-        }
     }
 
     public int findAllCount() {

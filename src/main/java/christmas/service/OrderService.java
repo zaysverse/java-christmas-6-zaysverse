@@ -4,7 +4,7 @@ import christmas.domain.Category;
 import christmas.domain.EventBadge;
 import christmas.domain.Order;
 
-import static christmas.ErrorMessage.INVALID_ORDER;
+import static christmas.ErrorMessage.*;
 import static christmas.domain.Category.*;
 import static christmas.domain.Event.*;
 import static christmas.service.SaleConfig.*;
@@ -63,11 +63,11 @@ public class OrderService {
 
     private void validation() {
         if (userOrder.findMenuCountByCategory(BEVERAGE) == userOrder.findAllCount()) {
-            throw new IllegalStateException(INVALID_ORDER.getMessage());
+            throw new IllegalStateException(LIMITED_MENU.getMessage());
         }
 
         if (userOrder.findAllCount() > MAX_MENU_CNT) {
-            throw new IllegalStateException(INVALID_ORDER.getMessage());
+            throw new IllegalStateException(OVER_MENU.getMessage());
         }
 
     }

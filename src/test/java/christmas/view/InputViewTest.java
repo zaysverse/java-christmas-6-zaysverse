@@ -1,5 +1,6 @@
 package christmas.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Category;
 import christmas.domain.Menu;
 import org.junit.jupiter.api.AfterEach;
@@ -18,6 +19,11 @@ class InputViewTest {
 
     InputView inputView = InputView.getInstance();
 
+    @AfterEach
+    void setup() {
+        Console.close();
+    }
+
     @Test
     void isNumber() {
         assertTrue(inputView.isNumber("1000"));
@@ -26,31 +32,29 @@ class InputViewTest {
         assertFalse(inputView.isNumber("a1231"));
     }
 
-//    @Test
+    @Test
     void readOrder_메뉴가_한개일때() {
         Map<String, Integer> expected = new HashMap<>();
         expected.put("메뉴1", 1);
 
         InputStream input = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("메뉴1-1".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("메뉴1-1\n".getBytes());
         System.setIn(in);
         Map<String, Integer> actual = inputView.readOrder();
-
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 
 
-//    @Test
+    @Test
     void readOrder_메뉴가_여러개일때() {
         Map<String, Integer> expected = new HashMap<>();
         expected.put("메뉴1", 1);
         expected.put("메뉴30", 30);
 
         InputStream input = System.in;
-        ByteArrayInputStream in = new ByteArrayInputStream("메뉴1-1,메뉴30-30".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("메뉴1-1,메뉴30-30\n".getBytes());
         System.setIn(in);
         Map<String, Integer> actual = inputView.readOrder();
-
         assertThat(actual).usingRecursiveComparison().isEqualTo(expected);
     }
 
