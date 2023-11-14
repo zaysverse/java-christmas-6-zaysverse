@@ -36,7 +36,7 @@ public class OutputView {
         printGift(order.isGift());
         printEvent(order.getEvents(), order.isGift());
         printDiscountPrice(order.getDiscountPrice());
-        printOrderPrice(order.getTotalPrice() + order.getDiscountPrice());
+        printOrderPrice(order.getTotalPrice() + order.getDiscountPrice() - SaleConfig.GIFT_CHAMPAGNE_PRICE);
         printBadge(order.getBadge().getMessage());
     }
 

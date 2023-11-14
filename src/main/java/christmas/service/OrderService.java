@@ -32,12 +32,12 @@ public class OrderService {
 
         validation();
 
-        if (order.getTotalPrice() < EVENT_CONDI) {
+        if (userOrder.getTotalPrice() < EVENT_CONDI) {
             return userOrder;
         }
 
         // 이벤트 적용
-        sale(order.getOrderDate());
+        sale(userOrder.getOrderDate());
         giftEvent();
         giveEventBadge();
 
