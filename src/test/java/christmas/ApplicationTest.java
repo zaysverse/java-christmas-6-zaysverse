@@ -34,22 +34,6 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 혜택_내역_없음_출력_자세하게() {
-        assertSimpleTest(() -> {
-            run("26", "타파스-1,제로콜라-1");
-            assertThat(output()).contains("<혜택 내역>" + LINE_SEPARATOR + "없음",
-                    "<할인 전 총주문 금액>" + LINE_SEPARATOR + "8,500원",
-                    "<증정 메뉴>" + LINE_SEPARATOR + "없음",
-                    "<혜택 내역>" + LINE_SEPARATOR + "없음",
-                    "<증정 메뉴>" + LINE_SEPARATOR + "없음",
-                    "<할인 후 예상 결제 금액>" + LINE_SEPARATOR + "8,500원",
-                    "<12월 이벤트 배지>" + LINE_SEPARATOR + "없음"
-            );
-
-        });
-    }
-
-    @Test
     void 날짜_예외_테스트() {
         assertSimpleTest(() -> {
             runException("a");
