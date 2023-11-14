@@ -29,7 +29,7 @@ public class OrderController {
 
     public Order create(int date) {
         Order order = Order.createOrder(date);
-        return orderService.order(order);
+        return order;
     }
 
     public Order update(Order order, Map<String, Integer> readOrders) throws RuntimeException {

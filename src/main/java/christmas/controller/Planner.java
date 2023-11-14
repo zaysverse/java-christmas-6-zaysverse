@@ -26,7 +26,8 @@ public class Planner {
     private Order planOrder(){
         Order order;
         try {
-            order = orderController.create(inputView.readDate());
+            int date = inputView.readDate();
+            order = orderController.create(date);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             order = orderController.create(inputView.readDate());
