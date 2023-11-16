@@ -64,6 +64,7 @@
   - `<12월 이벤트 배지>`
 
 
+
 ### Menu ( domain )
 
 `name`, `price`, `category`
